@@ -1,0 +1,148 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: ecodrive_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_DATABASE:-ecodrive}
+      MYSQL_USER: ${DB_USERNAME:-ecodrive_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-ecodrive_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - ecodrive_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: ecodrive_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ecodrive_network
+
+  # Laravel Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecodrive_backend
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      APP_KEY: ${APP_KEY}
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-ecodrive}
+      DB_USERNAME: ${DB_USERNAME:-ecodrive_user}
+      DB_PASSWORD: ${DB_PASSWORD:-ecodrive_pass}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      QUEUE_CONNECTION: redis
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
+    volumes:
+      - ./backend:/var/www/html
+      - backend_storage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - ecodrive_network
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: ecodrive_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./backend:/var/www/html
+      - ./frontend/dist:/var/www/frontend
+      - backend_storage:/var/www/html/storage
+    depends_on:
+      - backend
+    networks:
+      - ecodrive_network
+
+  # Laravel Queue Worker
+  queue:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecodrive_queue
+    restart: unless-stopped
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    environment:
+      APP_ENV: production
+      APP_KEY: ${APP_KEY}
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-ecodrive}
+      DB_USERNAME: ${DB_USERNAME:-ecodrive_user}
+      DB_PASSWORD: ${DB_PASSWORD:-ecodrive_pass}
+      REDIS_HOST: redis
+      QUEUE_CONNECTION: redis
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - ecodrive_network
+
+  # Laravel Scheduler
+  scheduler:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecodrive_scheduler
+    restart: unless-stopped
+    command: sh -c "while true; do php artisan schedule:run; sleep 60; done"
+    environment:
+      APP_ENV: production
+      APP_KEY: ${APP_KEY}
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-ecodrive}
+      DB_USERNAME: ${DB_USERNAME:-ecodrive_user}
+      DB_PASSWORD: ${DB_PASSWORD:-ecodrive_pass}
+      REDIS_HOST: redis
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - backend
+    networks:
+      - ecodrive_network
+
+volumes:
+  db_data:
+  redis_data:
+  backend_storage:
+
+networks:
+  ecodrive_network:
+    driver: bridge
