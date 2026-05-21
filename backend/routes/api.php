@@ -23,6 +23,8 @@ Route::prefix('v1')->group(function () {
         // Route::apiResource('trips', TripController::class);
         Route::get('/dashboard', [\App\Http\Controllers\Api\DashboardController::class, 'index']);
         
+        Route::post('/ai/chat', [\App\Http\Controllers\AIAssistantController::class, 'chat']);
+        
         Route::get('/vehicles', [\App\Http\Controllers\Api\VehicleController::class, 'index']);
         Route::post('/vehicles', [\App\Http\Controllers\Api\VehicleController::class, 'store']);
         Route::patch('/vehicles/{vehicle}/set-default', [\App\Http\Controllers\Api\VehicleController::class, 'setDefault']);
