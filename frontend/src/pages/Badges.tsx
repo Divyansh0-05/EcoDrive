@@ -47,11 +47,11 @@ export const Badges: React.FC = () => {
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
           <Award className="w-6 h-6 text-eco-glow" />
           Achievements
         </h1>
-        <p className="text-gray-400 text-sm mt-1">Unlock badges to rank up and earn bonus XP multipliers.</p>
+        <p className="text-muted-foreground text-sm mt-1">Unlock badges to rank up and earn bonus XP multipliers.</p>
       </div>
 
       {/* Grid of Badges */}
@@ -60,30 +60,30 @@ export const Badges: React.FC = () => {
           const unlocked = isUnlocked(badge.id);
           return (
             <div key={badge.id} className={`glass-card rounded-2xl p-5 border flex flex-col justify-between h-[180px] relative transition-all ${
-              unlocked ? 'border-eco-glow/20 shadow-glow-green bg-eco-bg/10' : 'border-white/5 opacity-55'
+              unlocked ? 'border-eco-glow/20 shadow-glow-green bg-eco-bg/10' : 'border-border opacity-55'
             }`}>
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="text-4xl">{badge.icon_emoji}</div>
                   <div>
-                    <span className="text-sm font-extrabold text-white block">{badge.name}</span>
+                    <span className="text-sm font-extrabold text-foreground block">{badge.name}</span>
                     <span className="text-[10px] text-eco-glow uppercase tracking-wider font-bold block mt-0.5">{badge.category} • {badge.rarity}</span>
                   </div>
                 </div>
                 {unlocked ? (
                   <CheckCircle2 className="w-4 h-4 text-[#10b981]" />
                 ) : (
-                  <Lock className="w-3.5 h-3.5 text-gray-500" />
+                  <Lock className="w-3.5 h-3.5 text-muted-foreground" />
                 )}
               </div>
 
               <div className="mt-3">
-                <p className="text-xs text-gray-400 leading-normal">{badge.description}</p>
+                <p className="text-xs text-muted-foreground leading-normal">{badge.description}</p>
               </div>
 
-              <div className="flex justify-between items-center mt-4 border-t border-white/5 pt-3">
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Reward</span>
-                <span className="text-xs font-extrabold text-white">+{badge.xp_reward} XP</span>
+              <div className="flex justify-between items-center mt-4 border-t border-border pt-3">
+                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Reward</span>
+                <span className="text-xs font-extrabold text-foreground">+{badge.xp_reward} XP</span>
               </div>
             </div>
           );

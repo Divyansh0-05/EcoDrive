@@ -122,8 +122,8 @@ export const LiveTelemetry: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Live Telemetry</h1>
-            <p className="text-gray-400 mt-2">Real-time vehicle data streaming simulation.</p>
+            <h1 className="text-3xl font-bold text-foreground tracking-tight">Live Telemetry</h1>
+            <p className="text-muted-foreground mt-2">Real-time vehicle data streaming simulation.</p>
           </div>
           <button
             onClick={handleToggle}
@@ -140,32 +140,32 @@ export const LiveTelemetry: React.FC = () => {
 
         {/* Top Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
+          <div className="bg-card border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <Activity className="w-24 h-24" />
             </div>
-            <h3 className="text-gray-400 font-medium mb-2">Current Speed</h3>
+            <h3 className="text-muted-foreground font-medium mb-2">Current Speed</h3>
             <div className="flex items-baseline gap-2">
-              <span className="text-6xl font-bold text-white font-mono">{currentSpeed}</span>
-              <span className="text-gray-500">km/h</span>
+              <span className="text-6xl font-bold text-foreground font-mono">{currentSpeed}</span>
+              <span className="text-muted-foreground">km/h</span>
             </div>
           </div>
           
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
+          <div className="bg-card border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-4 opacity-10">
               <TrendingUp className="w-24 h-24" />
             </div>
-            <h3 className="text-gray-400 font-medium mb-2">Engine RPM</h3>
+            <h3 className="text-muted-foreground font-medium mb-2">Engine RPM</h3>
             <div className="flex items-baseline gap-2">
-              <span className="text-6xl font-bold text-white font-mono">{currentRpm}</span>
-              <span className="text-gray-500">RPM</span>
+              <span className="text-6xl font-bold text-foreground font-mono">{currentRpm}</span>
+              <span className="text-muted-foreground">RPM</span>
             </div>
           </div>
 
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden flex flex-col justify-center">
-            <h3 className="text-gray-400 font-medium mb-2">Live Eco Score</h3>
+          <div className="bg-card border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden flex flex-col justify-center">
+            <h3 className="text-muted-foreground font-medium mb-2">Live Eco Score</h3>
             <div className="flex items-center gap-4">
-              <div className="flex-1 bg-white/10 rounded-full h-4 overflow-hidden">
+              <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
                 <div 
                   className={`h-full transition-all duration-300 ${
                     ecoScore > 80 ? 'bg-eco-glow' : ecoScore > 50 ? 'bg-yellow-500' : 'bg-red-500'
@@ -173,7 +173,7 @@ export const LiveTelemetry: React.FC = () => {
                   style={{ width: `${ecoScore}%` }}
                 />
               </div>
-              <span className="text-2xl font-bold text-white w-12 text-right">{ecoScore}</span>
+              <span className="text-2xl font-bold text-foreground w-12 text-right">{ecoScore}</span>
             </div>
           </div>
         </div>
@@ -182,8 +182,8 @@ export const LiveTelemetry: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Main Chart */}
-          <div className="lg:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-            <h3 className="text-lg font-bold text-white mb-6">Speed Telemetry Graph</h3>
+          <div className="lg:col-span-2 bg-card border border-border rounded-2xl p-6 backdrop-blur-sm">
+            <h3 className="text-lg font-bold text-foreground mb-6">Speed Telemetry Graph</h3>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data}>
@@ -208,14 +208,14 @@ export const LiveTelemetry: React.FC = () => {
           </div>
 
           {/* Event Log */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 backdrop-blur-sm">
             <div className="flex items-center gap-2 mb-6">
               <Zap className="w-5 h-5 text-eco-glow" />
-              <h3 className="text-lg font-bold text-white">Live Event Feed</h3>
+              <h3 className="text-lg font-bold text-foreground">Live Event Feed</h3>
             </div>
             <div className="space-y-4">
               {events.length === 0 && (
-                <p className="text-gray-500 text-sm text-center py-8">Start the engine to capture events.</p>
+                <p className="text-muted-foreground text-sm text-center py-8">Start the engine to capture events.</p>
               )}
               {events.map(event => (
                 <div 
@@ -223,7 +223,7 @@ export const LiveTelemetry: React.FC = () => {
                   className={`p-3 rounded-xl border flex gap-3 text-sm animate-in fade-in slide-in-from-right-4 duration-300 ${
                     event.type === 'warning' ? 'bg-red-500/10 border-red-500/20 text-red-200' :
                     event.type === 'success' ? 'bg-eco-glow/10 border-eco-glow/20 text-eco-glow' :
-                    'bg-white/5 border-white/10 text-gray-300'
+                    'bg-card border-border text-foreground'
                   }`}
                 >
                   <div className="shrink-0 mt-0.5">

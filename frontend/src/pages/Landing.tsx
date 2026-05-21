@@ -51,7 +51,7 @@ export const Landing: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-white font-sans overflow-x-hidden selection:bg-eco-glow/30 selection:text-white">
+    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-eco-glow/30 selection:text-foreground">
       {/* Background ambient glows */}
       <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-eco-glow/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[150px] pointer-events-none" />
@@ -70,7 +70,7 @@ export const Landing: React.FC = () => {
         <div className="flex items-center gap-4">
           <Link 
             to="/login" 
-            className="text-xs uppercase tracking-wider font-bold text-gray-400 hover:text-white transition-colors"
+            className="text-xs uppercase tracking-wider font-bold text-muted-foreground hover:text-foreground transition-colors"
           >
             Log In
           </Link>
@@ -85,7 +85,7 @@ export const Landing: React.FC = () => {
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center relative z-10 flex flex-col items-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.03] border border-white/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-eco-glow mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.03] border border-border rounded-full text-[10px] font-bold uppercase tracking-widest text-eco-glow mb-6">
           <Sparkles className="w-3.5 h-3.5" />
           Gamified Drive Telemetry
         </div>
@@ -97,7 +97,7 @@ export const Landing: React.FC = () => {
           </span>
         </h1>
         
-        <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed mb-8">
+        <p className="text-muted-foreground text-sm md:text-base max-w-xl leading-relaxed mb-8">
           Turn your daily driving telemetry into a gamified challenge. Track efficiency, compete on global leaderboards, earn exclusive achievements, and optimize your vehicle's performance.
         </p>
 
@@ -111,7 +111,7 @@ export const Landing: React.FC = () => {
           </Link>
           <Link
             to="/login"
-            className="bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
+            className="bg-card hover:bg-muted border border-border rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
           >
             Explore Dashboard
           </Link>
@@ -119,7 +119,7 @@ export const Landing: React.FC = () => {
       </section>
 
       {/* What is Telemetry Section */}
-      <section className="py-20 border-t border-white/5 bg-black/10 relative">
+      <section className="py-20 border-t border-border bg-muted relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -130,7 +130,7 @@ export const Landing: React.FC = () => {
               <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">
                 What is Driving Telemetry?
               </h2>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 Telemetry refers to the collection of real-time diagnostic parameters from your car. In EcoDrive, the platform measures simple trip telemetry (your route distance and time taken) and simulates complex indicators such as acceleration smooth profiles, deceleration braking, and idle efficiency.
               </p>
               
@@ -140,8 +140,8 @@ export const Landing: React.FC = () => {
                     <Compass className="w-4 h-4 text-eco-glow" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">Speed Consistency</h4>
-                    <p className="text-gray-400 text-xs mt-1">Driving at consistent speeds on highways drastically reduces fuel burn and power grid demand.</p>
+                    <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Speed Consistency</h4>
+                    <p className="text-muted-foreground text-xs mt-1">Driving at consistent speeds on highways drastically reduces fuel burn and power grid demand.</p>
                   </div>
                 </div>
 
@@ -150,39 +150,39 @@ export const Landing: React.FC = () => {
                     <Zap className="w-4 h-4 text-eco-glow" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">G-Force Smoothness</h4>
-                    <p className="text-gray-400 text-xs mt-1">Avoiding rapid stop-and-go movements preserves braking linings and keeps engine thermal efficiency high.</p>
+                    <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">G-Force Smoothness</h4>
+                    <p className="text-muted-foreground text-xs mt-1">Avoiding rapid stop-and-go movements preserves braking linings and keeps engine thermal efficiency high.</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="glass-card rounded-2xl p-6 border border-white/5 relative overflow-hidden">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-500 block mb-4">Telemetry Model Analysis</span>
+            <div className="glass-card rounded-2xl p-6 border border-border relative overflow-hidden">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground block mb-4">Telemetry Model Analysis</span>
               
               <div className="space-y-3">
-                <div className="p-3 bg-black/40 border border-white/5 rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Route Distance</span>
+                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
+                  <span className="text-xs font-bold text-foreground">Route Distance</span>
                   <span className="text-xs font-mono text-eco-glow font-bold">12.8 km</span>
                 </div>
-                <div className="p-3 bg-black/40 border border-white/5 rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Duration Taken</span>
+                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
+                  <span className="text-xs font-bold text-foreground">Duration Taken</span>
                   <span className="text-xs font-mono text-eco-glow font-bold">22 mins</span>
                 </div>
-                <div className="p-3 bg-black/40 border border-white/5 rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Avg Speed</span>
+                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
+                  <span className="text-xs font-bold text-foreground">Avg Speed</span>
                   <span className="text-xs font-mono text-emerald-400 font-bold">34.9 km/h</span>
                 </div>
-                <div className="p-3 bg-black/40 border border-white/5 rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Estimated Brake Profile</span>
+                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
+                  <span className="text-xs font-bold text-foreground">Estimated Brake Profile</span>
                   <span className="text-xs font-mono text-emerald-400 font-bold">Excellent</span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
                 <div>
-                  <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest block">Model Eco-Score</span>
-                  <span className="text-xl font-black text-white mt-0.5 block">89 <span className="text-[10px] text-eco-glow uppercase">Optimized</span></span>
+                  <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block">Model Eco-Score</span>
+                  <span className="text-xl font-black text-foreground mt-0.5 block">89 <span className="text-[10px] text-eco-glow uppercase">Optimized</span></span>
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-eco-glow/10 border border-eco-glow/20 flex items-center justify-center">
                   <Shield className="w-5 h-5 text-eco-glow" />
@@ -203,7 +203,7 @@ export const Landing: React.FC = () => {
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
             How Eco-Friendly is Your Vehicle?
           </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Different drivetrains interact uniquely with driving styles. Review how different fuels affect emission rates and telemetry potentials.
           </p>
         </div>
@@ -217,27 +217,27 @@ export const Landing: React.FC = () => {
               <div>
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">{car.maker}</span>
-                    <h3 className="text-sm font-extrabold text-white mt-0.5">{car.name}</h3>
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">{car.maker}</span>
+                    <h3 className="text-sm font-extrabold text-foreground mt-0.5">{car.name}</h3>
                   </div>
-                  <span className="px-2 py-0.5 bg-black/40 border border-white/10 rounded-md text-[9px] font-bold uppercase tracking-wider text-eco-glow">
+                  <span className="px-2 py-0.5 bg-card border border-border rounded-md text-[9px] font-bold uppercase tracking-wider text-eco-glow">
                     {car.type}
                   </span>
                 </div>
 
-                <p className="text-gray-400 text-xs mt-3 leading-relaxed mb-6">
+                <p className="text-muted-foreground text-xs mt-3 leading-relaxed mb-6">
                   {car.desc}
                 </p>
               </div>
 
               <div>
-                <div className="space-y-2 border-t border-white/5 pt-4 mb-4">
+                <div className="space-y-2 border-t border-border pt-4 mb-4">
                   <div className="flex justify-between items-center text-[10px]">
-                    <span className="font-bold text-gray-500 uppercase tracking-widest">CO2 Footprint</span>
-                    <span className="font-bold text-white">{car.co2}</span>
+                    <span className="font-bold text-muted-foreground uppercase tracking-widest">CO2 Footprint</span>
+                    <span className="font-bold text-foreground">{car.co2}</span>
                   </div>
                   <div className="flex justify-between items-center text-[10px]">
-                    <span className="font-bold text-gray-500 uppercase tracking-widest">Max Eco Potential</span>
+                    <span className="font-bold text-muted-foreground uppercase tracking-widest">Max Eco Potential</span>
                     <span className="font-mono font-bold text-eco-glow">{car.score}/100</span>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export const Landing: React.FC = () => {
                     <span 
                       key={i} 
                       className={`w-2.5 h-2.5 rounded-full ${
-                        i < car.ecoRating ? 'bg-eco-glow shadow-glow-green' : 'bg-white/5'
+                        i < car.ecoRating ? 'bg-eco-glow shadow-glow-green' : 'bg-card'
                       }`}
                     />
                   ))}
@@ -259,28 +259,28 @@ export const Landing: React.FC = () => {
       </section>
 
       {/* Gamification Explanation Section */}
-      <section className="py-20 border-t border-white/5 bg-black/10">
+      <section className="py-20 border-t border-border bg-muted">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
-              <div className="glass-card rounded-2xl p-5 border border-white/5 flex flex-col justify-between h-[160px]">
+              <div className="glass-card rounded-2xl p-5 border border-border flex flex-col justify-between h-[160px]">
                 <div className="w-9 h-9 bg-eco-glow/10 border border-eco-glow/20 rounded-xl flex items-center justify-center">
                   <Trophy className="w-5 h-5 text-eco-glow" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">Competitive Ranks</h4>
-                  <p className="text-gray-400 text-[10px] mt-1">Climb from Eco-Beginner to Eco-Master on our real-time leaderboard.</p>
+                  <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Competitive Ranks</h4>
+                  <p className="text-muted-foreground text-[10px] mt-1">Climb from Eco-Beginner to Eco-Master on our real-time leaderboard.</p>
                 </div>
               </div>
 
-              <div className="glass-card rounded-2xl p-5 border border-white/5 flex flex-col justify-between h-[160px]">
+              <div className="glass-card rounded-2xl p-5 border border-border flex flex-col justify-between h-[160px]">
                 <div className="w-9 h-9 bg-eco-glow/10 border border-eco-glow/20 rounded-xl flex items-center justify-center">
                   <Award className="w-5 h-5 text-eco-glow" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">Milestone Badges</h4>
-                  <p className="text-gray-400 text-[10px] mt-1">Unlock exclusive badges for conserving carbon and logging clean commutes.</p>
+                  <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Milestone Badges</h4>
+                  <p className="text-muted-foreground text-[10px] mt-1">Unlock exclusive badges for conserving carbon and logging clean commutes.</p>
                 </div>
               </div>
             </div>
@@ -293,7 +293,7 @@ export const Landing: React.FC = () => {
               <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">
                 Gamifying Carbon Reduction
               </h2>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 Why drive green alone? EcoDrive hooks directly into a social feedback loop. Compare your level with drivers globally. Level up by gathering XP on every efficient trip and earn bragging rights as a top Eco Driver on our platforms.
               </p>
               <Link
@@ -310,12 +310,12 @@ export const Landing: React.FC = () => {
       </section>
 
       {/* CTA Footer */}
-      <footer className="py-20 border-t border-white/5 text-center relative">
+      <footer className="py-20 border-t border-border text-center relative">
         <div className="max-w-xl mx-auto px-6">
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
             Ready to track your eco footprint?
           </h2>
-          <p className="text-gray-400 text-xs mb-8">
+          <p className="text-muted-foreground text-xs mb-8">
             Create your account today, add your default vehicle, and start collecting eco achievements.
           </p>
           <div className="flex gap-4 justify-center">
@@ -327,12 +327,12 @@ export const Landing: React.FC = () => {
             </Link>
             <Link
               to="/login"
-              className="bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
+              className="bg-card hover:bg-muted border border-border rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
             >
               Log In
             </Link>
           </div>
-          <p className="text-gray-500 text-[10px] uppercase mt-12 tracking-widest">
+          <p className="text-muted-foreground text-[10px] uppercase mt-12 tracking-widest">
             © 2026 EcoDrive. All rights reserved.
           </p>
         </div>
