@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 import { Leaf, Fuel, Cloud, Navigation, Bot, ArrowUp, Calendar, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { EcoMap } from '../components/EcoMap';
 
 export const Dashboard: React.FC = () => {
   const [data, setData] = useState<any>(null);
@@ -87,6 +88,24 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Map Row */}
+      <div className="grid grid-cols-1 gap-6">
+        <div className="glass-card rounded-2xl p-6 h-[450px] flex flex-col">
+          <div className="flex justify-between items-center mb-4">
+             <h3 className="font-bold text-foreground flex items-center gap-2">
+               <Navigation className="w-5 h-5 text-eco-primary" />
+               Live Telemetry Map
+             </h3>
+             <div className="flex gap-2">
+                <span className="px-3 py-1 bg-eco-light text-eco-primary text-xs font-bold rounded-lg border border-eco-glow/20">Eco Route Active</span>
+             </div>
+          </div>
+          <div className="flex-1 rounded-xl overflow-hidden border border-border relative z-0">
+             <EcoMap />
+          </div>
+        </div>
       </div>
 
       {/* Chart Row */}
