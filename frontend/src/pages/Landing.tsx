@@ -1,342 +1,207 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Leaf, Trophy, Award, Car, Activity, Sparkles, ArrowRight, Compass, Shield, Zap } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 
 export const Landing: React.FC = () => {
-  const cars = [
-    {
-      name: 'Tesla Model 3',
-      type: 'Electric',
-      maker: 'Tesla',
-      co2: '0g/km (Tailpipe)',
-      score: '100',
-      ecoRating: 5,
-      color: 'from-blue-500/20 to-indigo-500/20 border-blue-500/30',
-      desc: '100% electric motor with regenerative braking. Converts nearly 80% of battery energy into motion.',
-      badge: 'Zero Emission'
-    },
-    {
-      name: 'Toyota Grand Highlander',
-      type: 'Hybrid',
-      maker: 'Toyota',
-      co2: '110g/km',
-      score: '90',
-      ecoRating: 4,
-      color: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30',
-      desc: 'Petrol + Electric hybrid. Switches to electric at low speeds and traffic stops, reducing idle consumption.',
-      badge: 'Ultra-Low Emission'
-    },
-    {
-      name: 'Mahindra XUV700',
-      type: 'Petrol',
-      maker: 'Mahindra',
-      co2: '165g/km',
-      score: '75',
-      ecoRating: 3,
-      color: 'from-amber-500/20 to-orange-500/20 border-amber-500/30',
-      desc: 'Turbocharged petrol engine. Highly responsive but prone to heavy consumption during aggressive accelerations.',
-      badge: 'Standard Clean'
-    },
-    {
-      name: 'Toyota Fortuner',
-      type: 'Diesel',
-      maker: 'Toyota',
-      co2: '190g/km',
-      score: '65',
-      ecoRating: 2,
-      color: 'from-rose-500/20 to-red-500/20 border-rose-500/30',
-      desc: 'Heavy-duty diesel engine. Generates high torque but carries a larger greenhouse emission profile per kilometer.',
-      badge: 'High Footprint'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-eco-glow/30 selection:text-foreground">
-      {/* Background ambient glows */}
-      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-eco-glow/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[150px] pointer-events-none" />
+    <div className="min-h-screen bg-white font-sans overflow-x-hidden flex flex-col relative selection:bg-[#9DCB3C]/30">
+      
+      {/* Light Blue Decorative Background Shape */}
+      <div className="absolute top-0 right-0 w-[55vw] h-[100vh] bg-[#EEF8FA] rounded-l-[150px] -z-10" />
 
-      {/* Navbar */}
-      <header className="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center relative z-50">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-eco-bg border border-eco-glow/20 rounded-xl flex items-center justify-center shadow-glow-green">
-            <Leaf className="w-5 h-5 text-eco-glow" />
-          </div>
-          <span className="text-xl font-extrabold tracking-tight font-sans">
-            Eco<span className="text-eco-glow">Drive</span>
-          </span>
+      {/* Navigation */}
+      <nav className="w-full max-w-[1400px] mx-auto px-8 py-6 flex items-center justify-between z-10 relative">
+        <div className="text-[28px] font-extrabold tracking-tight text-[#9DCB3C] uppercase">
+          EcoDrive
         </div>
-        
+
+        <div className="hidden md:flex items-center gap-10">
+          {['Home', 'About', 'Service', 'Blog', 'Contact'].map((item) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`}
+              className="text-[#888888] font-bold text-sm uppercase tracking-wide hover:text-[#9DCB3C] transition-colors"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+
         <div className="flex items-center gap-4">
           <Link 
-            to="/login" 
-            className="text-xs uppercase tracking-wider font-bold text-muted-foreground hover:text-foreground transition-colors"
+            to="/register" 
+            className="px-6 py-2 rounded-full border-2 border-[#9DCB3C] text-[#888888] font-bold text-sm hover:bg-[#9DCB3C]/5 transition-colors"
           >
-            Log In
+            Sign up
           </Link>
           <Link 
-            to="/register" 
-            className="bg-eco-glow hover:bg-eco-glow/90 text-black font-extrabold py-2.5 px-5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-glow-green"
+            to="/login" 
+            className="px-6 py-2.5 rounded-full bg-[#9DCB3C] text-white font-bold text-sm hover:bg-[#8AB532] shadow-soft transition-colors"
           >
-            Register
+            Sign in
           </Link>
         </div>
-      </header>
+      </nav>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center relative z-10 flex flex-col items-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.03] border border-border rounded-full text-[10px] font-bold uppercase tracking-widest text-eco-glow mb-6">
-          <Sparkles className="w-3.5 h-3.5" />
-          Gamified Drive Telemetry
-        </div>
+      <main className="flex-1 w-full max-w-[1400px] mx-auto px-8 flex flex-col md:flex-row items-center justify-between z-10 relative mt-10 md:mt-0">
         
-        <h1 className="text-4xl md:text-6xl font-black tracking-tighter max-w-3xl leading-[1.05] mb-6">
-          Drive Smarter. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-eco-glow via-emerald-400 to-teal-500">
-            Save the Planet Greener.
-          </span>
-        </h1>
-        
-        <p className="text-muted-foreground text-sm md:text-base max-w-xl leading-relaxed mb-8">
-          Turn your daily driving telemetry into a gamified challenge. Track efficiency, compete on global leaderboards, earn exclusive achievements, and optimize your vehicle's performance.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link
-            to="/register"
-            className="bg-eco-glow hover:bg-eco-glow/90 text-black font-extrabold py-3 px-8 rounded-xl text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-glow-green"
-          >
-            Get Started Free
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            to="/login"
-            className="bg-card hover:bg-muted border border-border rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
-          >
-            Explore Dashboard
-          </Link>
-        </div>
-      </section>
-
-      {/* What is Telemetry Section */}
-      <section className="py-20 border-t border-border bg-muted relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-eco-glow font-bold mb-3">
-                <Activity className="w-3.5 h-3.5" />
-                Live Telemetry
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">
-                What is Driving Telemetry?
-              </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Telemetry refers to the collection of real-time diagnostic parameters from your car. In EcoDrive, the platform measures simple trip telemetry (your route distance and time taken) and simulates complex indicators such as acceleration smooth profiles, deceleration braking, and idle efficiency.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-eco-glow/10 border border-eco-glow/20 flex items-center justify-center shrink-0">
-                    <Compass className="w-4 h-4 text-eco-glow" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Speed Consistency</h4>
-                    <p className="text-muted-foreground text-xs mt-1">Driving at consistent speeds on highways drastically reduces fuel burn and power grid demand.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-eco-glow/10 border border-eco-glow/20 flex items-center justify-center shrink-0">
-                    <Zap className="w-4 h-4 text-eco-glow" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">G-Force Smoothness</h4>
-                    <p className="text-muted-foreground text-xs mt-1">Avoiding rapid stop-and-go movements preserves braking linings and keeps engine thermal efficiency high.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="glass-card rounded-2xl p-6 border border-border relative overflow-hidden">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground block mb-4">Telemetry Model Analysis</span>
-              
-              <div className="space-y-3">
-                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-foreground">Route Distance</span>
-                  <span className="text-xs font-mono text-eco-glow font-bold">12.8 km</span>
-                </div>
-                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-foreground">Duration Taken</span>
-                  <span className="text-xs font-mono text-eco-glow font-bold">22 mins</span>
-                </div>
-                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-foreground">Avg Speed</span>
-                  <span className="text-xs font-mono text-emerald-400 font-bold">34.9 km/h</span>
-                </div>
-                <div className="p-3 bg-card border border-border rounded-xl flex items-center justify-between">
-                  <span className="text-xs font-bold text-foreground">Estimated Brake Profile</span>
-                  <span className="text-xs font-mono text-emerald-400 font-bold">Excellent</span>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
-                <div>
-                  <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block">Model Eco-Score</span>
-                  <span className="text-xl font-black text-foreground mt-0.5 block">89 <span className="text-[10px] text-eco-glow uppercase">Optimized</span></span>
-                </div>
-                <div className="w-9 h-9 rounded-xl bg-eco-glow/10 border border-eco-glow/20 flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-eco-glow" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vehicle Showdown Section */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-eco-glow font-bold mb-3">
-            <Car className="w-3.5 h-3.5" />
-            Garage Diagnostics
-          </div>
-          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
-            How Eco-Friendly is Your Vehicle?
-          </h2>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Different drivetrains interact uniquely with driving styles. Review how different fuels affect emission rates and telemetry potentials.
+        {/* Left Column (Text) */}
+        <div className="w-full md:w-[45%] space-y-8 pb-20 md:pb-0">
+          <h1 className="text-[5rem] leading-[1.05] font-black tracking-tight uppercase">
+            <span className="text-[#9DCB3C] block">100% Eco</span>
+            <span className="text-[#4A4A4A] block">Friendly</span>
+          </h1>
+          
+          <p className="text-[#888888] text-lg max-w-[450px] leading-relaxed font-medium">
+            Track your trips, calculate exact carbon emissions, and utilize AI telemetry to optimize your driving habits. Save fuel, reduce wear, and help heal our planet.
           </p>
+
+          <div className="pt-4 flex items-center gap-6">
+            <Link 
+              to="/register"
+              className="group flex items-center gap-2 bg-[#9DCB3C] hover:bg-[#8AB532] text-white px-8 py-3.5 rounded-full font-bold text-[15px] uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(157,203,60,0.3)] hover:-translate-y-0.5"
+            >
+              Learn More 
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            {/* Slider Dots/Arrows (Visual only, matching image) */}
+            <div className="flex items-center gap-4 ml-10">
+               <button className="w-0 h-0 border-t-[6px] border-t-transparent border-r-[10px] border-r-[#9DCB3C] border-b-[6px] border-b-transparent hover:opacity-70 transition-opacity"></button>
+               <button className="w-10 h-10 rounded-full border-2 border-[#9DCB3C] flex items-center justify-center text-[#9DCB3C] hover:bg-[#9DCB3C]/10 transition-colors">
+                 <Play className="w-4 h-4 fill-current ml-0.5" />
+               </button>
+            </div>
+          </div>
+          
+          {/* Decorative side dots (matching image left edge) */}
+          <div className="absolute left-0 top-[60%] flex flex-col gap-3 -translate-x-4">
+             <div className="w-3 h-3 rounded-full border-2 border-[#9DCB3C]"></div>
+             <div className="w-3 h-3 rounded-full bg-[#9DCB3C]"></div>
+             <div className="w-3 h-3 rounded-full bg-[#9DCB3C]"></div>
+             <div className="w-3 h-3 rounded-full bg-[#9DCB3C]"></div>
+             <div className="w-3 h-3 rounded-full bg-[#9DCB3C]"></div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cars.map((car, idx) => (
-            <div 
-              key={idx} 
-              className={`glass-card bg-gradient-to-br ${car.color} border rounded-2xl p-6 flex flex-col justify-between`}
-            >
-              <div>
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">{car.maker}</span>
-                    <h3 className="text-sm font-extrabold text-foreground mt-0.5">{car.name}</h3>
-                  </div>
-                  <span className="px-2 py-0.5 bg-card border border-border rounded-md text-[9px] font-bold uppercase tracking-wider text-eco-glow">
-                    {car.type}
-                  </span>
-                </div>
+        {/* Right Column (Image) */}
+        <div className="w-full md:w-[55%] relative flex justify-end">
+           {/* The generated image */}
+           <img 
+             src="/hero-ev.png" 
+             alt="Isometric EV Charging Station" 
+             className="w-[120%] max-w-[800px] object-contain -mr-20 z-10 animate-fade-in"
+             style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.08))' }}
+           />
+        </div>
 
-                <p className="text-muted-foreground text-xs mt-3 leading-relaxed mb-6">
-                  {car.desc}
+      </main>
+
+      {/* Features Section */}
+      <section id="service" className="w-full py-24 bg-white z-10 relative">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-[#9DCB3C] font-bold tracking-widest uppercase text-sm mb-2">Our Services</h2>
+            <h3 className="text-4xl font-black text-[#4A4A4A] uppercase">Why Choose EcoDrive?</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { title: "Live Telemetry", desc: "Monitor your driving in real-time. Identify harsh braking and acceleration events to improve your eco-score." },
+              { title: "AI Assistant", desc: "Get personalized insights and tips from our advanced AI driving assistant to help you save fuel and reduce wear." },
+              { title: "Carbon Tracking", desc: "Calculate your exact carbon emissions for every trip and track your total CO2 saved over time." }
+            ].map((feature, idx) => (
+              <div key={idx} className="p-8 rounded-[2rem] border-2 border-[#EEF8FA] hover:border-[#9DCB3C] transition-colors group">
+                <div className="w-16 h-16 rounded-2xl bg-[#EEF8FA] text-[#9DCB3C] flex items-center justify-center mb-6 group-hover:bg-[#9DCB3C] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 border-4 border-current rounded-full" />
+                </div>
+                <h4 className="text-xl font-bold text-[#4A4A4A] mb-3 uppercase">{feature.title}</h4>
+                <p className="text-[#888888] leading-relaxed font-medium">
+                  {feature.desc}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div>
-                <div className="space-y-2 border-t border-border pt-4 mb-4">
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className="font-bold text-muted-foreground uppercase tracking-widest">CO2 Footprint</span>
-                    <span className="font-bold text-foreground">{car.co2}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className="font-bold text-muted-foreground uppercase tracking-widest">Max Eco Potential</span>
-                    <span className="font-mono font-bold text-eco-glow">{car.score}/100</span>
-                  </div>
-                </div>
-
-                <div className="flex gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span 
-                      key={i} 
-                      className={`w-2.5 h-2.5 rounded-full ${
-                        i < car.ecoRating ? 'bg-eco-glow shadow-glow-green' : 'bg-card'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
+      {/* Stats Section */}
+      <section className="w-full py-20 bg-[#9DCB3C] text-white z-10 relative">
+        <div className="max-w-[1400px] mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+          {[
+            { label: "Active Drivers", value: "50K+" },
+            { label: "CO2 Saved (Tons)", value: "12M+" },
+            { label: "Trips Analyzed", value: "5M+" },
+            { label: "Fuel Saved (Gallons)", value: "2M+" }
+          ].map((stat, idx) => (
+            <div key={idx} className="flex flex-col gap-2">
+              <span className="text-5xl font-black">{stat.value}</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-white/80">{stat.label}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Gamification Explanation Section */}
-      <section className="py-20 border-t border-border bg-muted">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
-              <div className="glass-card rounded-2xl p-5 border border-border flex flex-col justify-between h-[160px]">
-                <div className="w-9 h-9 bg-eco-glow/10 border border-eco-glow/20 rounded-xl flex items-center justify-center">
-                  <Trophy className="w-5 h-5 text-eco-glow" />
+      {/* How It Works Section */}
+      <section className="w-full py-24 bg-[#F8F9FA] z-10 relative">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-[#9DCB3C] font-bold tracking-widest uppercase text-sm mb-2">Process</h2>
+            <h3 className="text-4xl font-black text-[#4A4A4A] uppercase">How It Works</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            <div className="hidden md:block absolute top-[20%] left-1/6 right-1/6 h-[2px] bg-[#EEF8FA] border-t-2 border-dashed border-[#9DCB3C] z-0"></div>
+            {[
+              { step: "01", title: "Add Your Vehicle", desc: "Input your car details in the garage. We support all engine types, including EV and Hybrids." },
+              { step: "02", title: "Drive Naturally", desc: "Log your trips or connect live telemetry. The AI analyzes your speed, braking, and idling." },
+              { step: "03", title: "Earn Rewards", desc: "Increase your EcoScore, climb the global leaderboards, and offset your carbon footprint." }
+            ].map((item, idx) => (
+              <div key={idx} className="relative z-10 flex flex-col items-center text-center">
+                <div className="w-20 h-20 rounded-full bg-white border-4 border-[#9DCB3C] text-[#9DCB3C] flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_20px_rgba(157,203,60,0.2)]">
+                  {item.step}
                 </div>
-                <div>
-                  <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Competitive Ranks</h4>
-                  <p className="text-muted-foreground text-[10px] mt-1">Climb from Eco-Beginner to Eco-Master on our real-time leaderboard.</p>
-                </div>
+                <h4 className="text-xl font-bold text-[#4A4A4A] mb-3 uppercase">{item.title}</h4>
+                <p className="text-[#888888] leading-relaxed font-medium max-w-[280px]">
+                  {item.desc}
+                </p>
               </div>
-
-              <div className="glass-card rounded-2xl p-5 border border-border flex flex-col justify-between h-[160px]">
-                <div className="w-9 h-9 bg-eco-glow/10 border border-eco-glow/20 rounded-xl flex items-center justify-center">
-                  <Award className="w-5 h-5 text-eco-glow" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Milestone Badges</h4>
-                  <p className="text-muted-foreground text-[10px] mt-1">Unlock exclusive badges for conserving carbon and logging clean commutes.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-eco-glow font-bold mb-3">
-                <Trophy className="w-3.5 h-3.5" />
-                Drive Community
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">
-                Gamifying Carbon Reduction
-              </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Why drive green alone? EcoDrive hooks directly into a social feedback loop. Compare your level with drivers globally. Level up by gathering XP on every efficient trip and earn bragging rights as a top Eco Driver on our platforms.
-              </p>
-              <Link
-                to="/register"
-                className="bg-eco-glow hover:bg-eco-glow/90 text-black font-extrabold py-3 px-6 rounded-xl text-xs uppercase tracking-wider transition-all inline-flex items-center gap-2 shadow-glow-green"
-              >
-                Join Leaderboard
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Footer */}
-      <footer className="py-20 border-t border-border text-center relative">
-        <div className="max-w-xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
-            Ready to track your eco footprint?
+      {/* CTA Section */}
+      <section className="w-full py-32 bg-white z-10 relative text-center">
+        <div className="max-w-[800px] mx-auto px-8">
+          <h2 className="text-5xl font-black text-[#4A4A4A] uppercase mb-6 leading-tight">
+            Ready to drive <span className="text-[#9DCB3C]">smarter?</span>
           </h2>
-          <p className="text-muted-foreground text-xs mb-8">
-            Create your account today, add your default vehicle, and start collecting eco achievements.
+          <p className="text-[#888888] text-lg mb-10 font-medium">
+            Join thousands of drivers making a difference. Start tracking your eco-score today and help build a greener future.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              to="/register"
-              className="bg-eco-glow hover:bg-eco-glow/90 text-black font-extrabold py-3 px-8 rounded-xl text-xs uppercase tracking-wider transition-all shadow-glow-green"
-            >
-              Sign Up Now
-            </Link>
-            <Link
-              to="/login"
-              className="bg-card hover:bg-muted border border-border rounded-xl py-3 px-8 text-xs font-extrabold uppercase tracking-wider transition-colors"
-            >
-              Log In
-            </Link>
+          <Link 
+            to="/register"
+            className="inline-block bg-[#9DCB3C] hover:bg-[#8AB532] text-white px-10 py-4 rounded-full font-bold text-lg uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(157,203,60,0.3)] hover:-translate-y-1"
+          >
+            Create Free Account
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full py-12 bg-[#F8F9FA] border-t border-gray-200 z-10 relative">
+        <div className="max-w-[1400px] mx-auto px-8 flex flex-col md:flex-row items-center justify-between">
+          <div className="text-xl font-extrabold tracking-tight text-[#9DCB3C] uppercase mb-4 md:mb-0">
+            EcoDrive
           </div>
-          <p className="text-muted-foreground text-[10px] uppercase mt-12 tracking-widest">
-            © 2026 EcoDrive. All rights reserved.
+          <p className="text-[#888888] text-sm font-medium">
+            © {new Date().getFullYear()} EcoDrive. All rights reserved.
           </p>
         </div>
       </footer>
+
     </div>
   );
 };
