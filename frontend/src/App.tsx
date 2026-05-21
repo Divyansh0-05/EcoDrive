@@ -10,6 +10,7 @@ import { Leaderboard } from './pages/Leaderboard';
 import { Landing } from './pages/Landing';
 import { LiveTelemetry } from './pages/LiveTelemetry';
 import { AIAssistant } from './pages/AIAssistant';
+import { RoutePlanner } from './pages/RoutePlanner';
 import { Sidebar } from './components/Sidebar';
 import { TopHeader } from './components/TopHeader';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
         }>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ai-assistant" element={<AIAssistant />} />
+          <Route path="/route-planner" element={<RoutePlanner />} />
           <Route path="/live-telemetry" element={<LiveTelemetry />} />
           <Route path="/trips" element={<Trips />} />
           <Route path="/vehicles" element={<Vehicles />} />

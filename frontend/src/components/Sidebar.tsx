@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Leaf, LayoutDashboard, Car, Compass, Trophy, Award, Activity, Bot, Settings, Bell } from 'lucide-react';
+import { Leaf, LayoutDashboard, Car, Compass, Trophy, Award, Activity, Bot, Settings, Bell, MapPin } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const navLinks = [
@@ -11,6 +11,7 @@ export const Sidebar: React.FC = () => {
     { to: '/badges', label: 'Rewards', icon: Award },
     { to: '/leaderboard', label: 'Leaderboard', icon: Trophy },
     { to: '/ai-assistant', label: 'AI Assistant', icon: Bot },
+    { to: '/route-planner', label: 'Route Planner', icon: MapPin },
     { to: '/challenges', label: 'Challenges', icon: Award },
     { to: '/notifications', label: 'Notifications', icon: Bell },
     { to: '/settings', label: 'Settings', icon: Settings },

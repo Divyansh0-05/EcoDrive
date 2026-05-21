@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 
 // Create custom icons using divIcon for modern styling
@@ -22,26 +22,36 @@ const startIcon = createCustomIcon('#10B981'); // Eco Green
 const endIcon = createCustomIcon('#3B82F6');   // Blue
 const trafficIcon = createCustomIcon('#EF4444'); // Red
 
-export const EcoMap: React.FC = () => {
-  // Map center (New York / Manhattan example)
-  const center: [number, number] = [40.7580, -73.9855];
+interface EcoMapProps {
+  center?: [number, number];
+  ecoRoute?: [number, number][];
+  trafficRoute?: [number, number][];
+}
 
-  // Mock Route (Eco Route)
-  const ecoRoute: [number, number][] = [
-    [40.7580, -73.9855],
-    [40.7620, -73.9800],
-    [40.7680, -73.9750],
-    [40.7720, -73.9700],
-  ];
+// Helper component to auto-center map
+const MapUpdater: React.FC<{ center: [number, number] }> = ({ center }) => {
+  const map = useMap();
+  React.useEffect(() => {
+    map.setView(center, map.getZoom());
+  }, [center, map]);
+  return null;
+};
 
-  // Mock Route (Traffic heavy route)
-  const trafficRoute: [number, number][] = [
-    [40.7580, -73.9855],
-    [40.7520, -73.9750],
-    [40.7480, -73.9650],
-    [40.7450, -73.9600],
-  ];
-
+export const EcoMap: React.FC<EcoMapProps> = ({ 
+  center = [28.6139, 77.2090], // New Delhi
+  ecoRoute = [
+    [28.6139, 77.2090],
+    [28.5900, 77.2200],
+    [28.5700, 77.2400],
+    [28.5500, 77.2600], // Okhla / Noida direction
+  ],
+  trafficRoute = [
+    [28.6139, 77.2090],
+    [28.5950, 77.2300],
+    [28.5800, 77.2500],
+    [28.5500, 77.2600],
+  ]
+}) => {
   return (
     <div className="w-full h-full relative z-0">
       <MapContainer 
@@ -50,52 +60,61 @@ export const EcoMap: React.FC = () => {
         style={{ height: '100%', width: '100%', zIndex: 0 }}
         zoomControl={false}
       >
+        <MapUpdater center={center} />
+        
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
 
         {/* Eco Route Line */}
-        <Polyline 
-          positions={ecoRoute} 
-          pathOptions={{ color: '#10B981', weight: 4, dashArray: '5, 10', opacity: 0.8 }} 
-        />
+        {ecoRoute.length > 0 && (
+          <Polyline 
+            positions={ecoRoute} 
+            pathOptions={{ color: '#10B981', weight: 4, dashArray: '5, 10', opacity: 0.8 }} 
+          />
+        )}
 
         {/* Traffic Route Line */}
-        <Polyline 
-          positions={trafficRoute} 
-          pathOptions={{ color: '#EF4444', weight: 4, opacity: 0.6 }} 
-        />
+        {trafficRoute.length > 0 && (
+          <Polyline 
+            positions={trafficRoute} 
+            pathOptions={{ color: '#EF4444', weight: 4, opacity: 0.6 }} 
+          />
+        )}
 
         {/* Start Point */}
         <Marker position={center} icon={startIcon}>
           <Popup className="rounded-xl overflow-hidden shadow-soft border-0">
             <div className="p-1">
               <strong className="text-foreground text-sm">Start Location</strong>
-              <p className="text-muted-foreground text-xs m-0 mt-1">Times Square, NY</p>
             </div>
           </Popup>
         </Marker>
 
         {/* Eco End Point */}
-        <Marker position={ecoRoute[ecoRoute.length - 1]} icon={endIcon}>
-          <Popup className="rounded-xl overflow-hidden shadow-soft border-0">
-            <div className="p-1">
-              <strong className="text-eco-primary text-sm flex items-center gap-1">Eco Route</strong>
-              <p className="text-muted-foreground text-xs m-0 mt-1">Saved 1.2kg CO2</p>
-            </div>
-          </Popup>
-        </Marker>
+        {ecoRoute.length > 0 && (
+          <Marker position={ecoRoute[ecoRoute.length - 1]} icon={endIcon}>
+            <Popup className="rounded-xl overflow-hidden shadow-soft border-0">
+              <div className="p-1">
+                <strong className="text-eco-primary text-sm flex items-center gap-1">Eco Route</strong>
+                <p className="text-muted-foreground text-xs m-0 mt-1">Recommended</p>
+              </div>
+            </Popup>
+          </Marker>
+        )}
 
         {/* Traffic End Point */}
-        <Marker position={trafficRoute[trafficRoute.length - 1]} icon={trafficIcon}>
-           <Popup className="rounded-xl overflow-hidden shadow-soft border-0">
-            <div className="p-1">
-              <strong className="text-red-500 text-sm">Traffic Route</strong>
-              <p className="text-muted-foreground text-xs m-0 mt-1">Heavy congestion (+15m)</p>
-            </div>
-          </Popup>
-        </Marker>
+        {trafficRoute.length > 0 && (
+          <Marker position={trafficRoute[trafficRoute.length - 1]} icon={trafficIcon}>
+             <Popup className="rounded-xl overflow-hidden shadow-soft border-0">
+              <div className="p-1">
+                <strong className="text-red-500 text-sm">Normal Route</strong>
+                <p className="text-muted-foreground text-xs m-0 mt-1">Heavy congestion</p>
+              </div>
+            </Popup>
+          </Marker>
+        )}
 
       </MapContainer>
       
