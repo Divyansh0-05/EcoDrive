@@ -11,6 +11,7 @@ import { Landing } from './pages/Landing';
 import { LiveTelemetry } from './pages/LiveTelemetry';
 import { AIAssistant } from './pages/AIAssistant';
 import { Sidebar } from './components/Sidebar';
+import { TopHeader } from './components/TopHeader';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 const AppLayout: React.FC = () => {
@@ -18,7 +19,10 @@ const AppLayout: React.FC = () => {
     <div className="flex h-screen w-screen overflow-hidden bg-background">
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0">
-        <Outlet />
+        <TopHeader />
+        <div className="flex-1 overflow-auto">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

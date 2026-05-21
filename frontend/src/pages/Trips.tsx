@@ -87,11 +87,11 @@ export const Trips: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
             <Compass className="w-6 h-6 text-eco-glow" />
             Telemetry Logs
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Detailed breakdown of individual drive diagnostics.</p>
+          <p className="text-muted-foreground text-sm mt-1">Detailed breakdown of individual drive diagnostics.</p>
         </div>
         <button
           onClick={() => setShowLogModal(true)}
@@ -108,7 +108,7 @@ export const Trips: React.FC = () => {
         </div>
       ) : (
         <div className="glass-card rounded-2xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between text-xs font-bold text-gray-500 uppercase tracking-widest bg-black/10">
+          <div className="px-6 py-4 border-b border-border flex items-center justify-between text-xs font-bold text-muted-foreground uppercase tracking-widest bg-muted">
             <span>Drive Summary</span>
             <div className="flex gap-20 pr-4">
               <span>Diagnostics</span>
@@ -123,26 +123,26 @@ export const Trips: React.FC = () => {
               return (
                 <div key={trip.id} className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.01] transition-colors">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-black/40 border border-white/5 flex items-center justify-center text-gray-400">
+                    <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground">
                       <Navigation className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-white block">{trip.title}</span>
-                      <span className="text-[10px] text-gray-500 font-medium uppercase mt-1 block">
+                      <span className="text-sm font-bold text-foreground block">{trip.title}</span>
+                      <span className="text-[10px] text-muted-foreground font-medium uppercase mt-1 block">
                         {formatDistance(trip.distance_km)} • {trip.duration_minutes} minutes
                       </span>
                     </div>
                   </div>
 
                   <div className="flex gap-20 items-center pr-4">
-                    <div className="text-right text-[10px] font-bold text-gray-400 space-y-0.5 uppercase tracking-wider">
+                    <div className="text-right text-[10px] font-bold text-muted-foreground space-y-0.5 uppercase tracking-wider">
                       <div>Accel Events: {trip.hard_acceleration_count}</div>
                       <div>Brake Events: {trip.hard_braking_count}</div>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
                         <span className="text-xs font-semibold text-[#10b981] block">-{parseFloat(trip.co2_saved_vs_avg_kg).toFixed(1)}kg CO2</span>
-                        <span className="text-[9px] text-gray-500 block uppercase tracking-widest mt-0.5">Offset</span>
+                        <span className="text-[9px] text-muted-foreground block uppercase tracking-widest mt-0.5">Offset</span>
                       </div>
                       <div className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center font-black ${scoreDetails.bg} ${scoreDetails.text} border ${scoreDetails.border}`}>
                         <span className="text-sm">{score}</span>
@@ -153,7 +153,7 @@ export const Trips: React.FC = () => {
               );
             })}
             {trips.length === 0 && (
-              <span className="text-xs text-gray-500 text-center block py-10">No drive telemetries found. Start simulating drives to generate score profiles!</span>
+              <span className="text-xs text-muted-foreground text-center block py-10">No drive telemetries found. Start simulating drives to generate score profiles!</span>
             )}
           </div>
         </div>
@@ -162,18 +162,18 @@ export const Trips: React.FC = () => {
       {/* Log Modal */}
       {showLogModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-[450px] glass-card rounded-2xl p-6 border border-white/5 relative flex flex-col">
-            <h2 className="text-lg font-bold text-white mb-1">Simulate Trip Telemetry</h2>
-            <p className="text-xs text-gray-500 mb-6">Enter basic trip parameters. Advanced telemetry data will be calculated automatically.</p>
+          <div className="w-full max-w-[450px] glass-card rounded-2xl p-6 border border-border relative flex flex-col">
+            <h2 className="text-lg font-bold text-foreground mb-1">Simulate Trip Telemetry</h2>
+            <p className="text-xs text-muted-foreground mb-6">Enter basic trip parameters. Advanced telemetry data will be calculated automatically.</p>
 
             <form onSubmit={handleLogTrip} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Route Nickname</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Route Nickname</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Office Commute"
-                  className="w-full bg-black/40 border border-white/5 rounded-xl py-2.5 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                  className="w-full bg-card border border-border rounded-xl py-2.5 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -181,35 +181,35 @@ export const Trips: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Distance (km)</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Distance (km)</label>
                   <input
                     type="number"
                     step="0.1"
                     required
                     placeholder="e.g. 15.2"
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2.5 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2.5 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={distance}
                     onChange={(e) => setDistance(e.target.value)}
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Duration (mins)</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Duration (mins)</label>
                   <input
                     type="number"
                     required
                     placeholder="e.g. 30"
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2.5 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2.5 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div className="flex gap-3 justify-end pt-4 border-t border-white/5">
+              <div className="flex gap-3 justify-end pt-4 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setShowLogModal(false)}
-                  className="px-4 py-2 border border-white/5 hover:bg-white/5 rounded-xl text-xs font-bold uppercase text-gray-400 tracking-wider transition-colors"
+                  className="px-4 py-2 border border-border hover:bg-card rounded-xl text-xs font-bold uppercase text-muted-foreground tracking-wider transition-colors"
                 >
                   Cancel
                 </button>

@@ -8,27 +8,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#070a09', // Deep space dark forest
-        foreground: '#e2e8f0',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         card: {
-          DEFAULT: 'rgba(15, 23, 20, 0.4)', // Glassmorphic card
-          foreground: '#f8fafc',
-          border: 'rgba(255, 255, 255, 0.05)',
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
+          border: 'var(--border)',
         },
         eco: {
           primary: '#2D7D46',
           dark: '#1A4D2E',
           accent: '#4CAF50',
-          glow: '#10B981', // Emerald glow
+          glow: '#10B981',
           light: '#E8F5E9',
-          bg: '#0F1F17',
+          bg: 'var(--eco-bg)',
         },
-        border: 'rgba(255, 255, 255, 0.08)',
-        ring: 'rgba(16, 185, 129, 0.4)',
+        border: 'var(--border)',
+        ring: 'var(--ring)',
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)'
+        }
       },
       boxShadow: {
         'glow-green': '0 0 15px rgba(16, 185, 129, 0.15)',
         'glow-green-lg': '0 0 25px rgba(16, 185, 129, 0.3)',
+        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
       },
       backdropBlur: {
         'glass': '12px',

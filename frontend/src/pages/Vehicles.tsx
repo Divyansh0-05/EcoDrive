@@ -88,11 +88,11 @@ export const Vehicles: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
             <Car className="w-6 h-6 text-eco-glow" />
             Garage
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Configure your active vehicles for telemetry adjustment.</p>
+          <p className="text-muted-foreground text-sm mt-1">Configure your active vehicles for telemetry adjustment.</p>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
@@ -111,25 +111,25 @@ export const Vehicles: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {vehicles.map((v) => (
             <div key={v.id} className={`glass-card rounded-2xl p-5 border flex flex-col justify-between h-[200px] relative transition-all ${
-              v.is_default ? 'border-eco-glow/20 shadow-glow-green' : 'border-white/5'
+              v.is_default ? 'border-eco-glow/20 shadow-glow-green' : 'border-border'
             }`}>
               <div>
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-sm font-bold text-white block">{v.nickname}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold block mt-0.5">{v.make} {v.model} ({v.year})</span>
+                    <span className="text-sm font-bold text-foreground block">{v.nickname}</span>
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold block mt-0.5">{v.make} {v.model} ({v.year})</span>
                   </div>
                   <span className={`text-[9px] font-extrabold uppercase px-2 py-1 rounded-md border ${
                     v.fuel_type === 'electric' 
                       ? 'bg-emerald-950/40 text-[#10b981] border-emerald-500/20' 
-                      : 'bg-black/40 text-gray-400 border-white/5'
+                      : 'bg-card text-muted-foreground border-border'
                   }`}>
                     {v.fuel_type}
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between items-center mt-6 border-t border-white/5 pt-4">
+              <div className="flex justify-between items-center mt-6 border-t border-border pt-4">
                 {v.is_default ? (
                   <div className="flex items-center gap-1 text-[#10b981] text-xs font-bold uppercase tracking-wider">
                     <CheckCircle2 className="w-4 h-4" />
@@ -138,7 +138,7 @@ export const Vehicles: React.FC = () => {
                 ) : (
                   <button
                     onClick={() => handleSetDefault(v.id)}
-                    className="text-[10px] font-extrabold uppercase tracking-widest text-gray-500 hover:text-white transition-colors"
+                    className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Set as Default
                   </button>
@@ -146,7 +146,7 @@ export const Vehicles: React.FC = () => {
 
                 <button
                   onClick={() => handleDelete(v.id)}
-                  className="text-gray-500 hover:text-red-400 p-2 hover:bg-red-500/5 rounded-lg border border-transparent hover:border-red-500/10 transition-all"
+                  className="text-muted-foreground hover:text-red-400 p-2 hover:bg-red-500/5 rounded-lg border border-transparent hover:border-red-500/10 transition-all"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -155,9 +155,9 @@ export const Vehicles: React.FC = () => {
           ))}
 
           {vehicles.length === 0 && (
-            <div className="col-span-full py-16 flex flex-col items-center justify-center border border-dashed border-white/5 rounded-2xl">
+            <div className="col-span-full py-16 flex flex-col items-center justify-center border border-dashed border-border rounded-2xl">
               <ShieldAlert className="w-10 h-10 text-gray-600 mb-3" />
-              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">No vehicles configured</span>
+              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">No vehicles configured</span>
               <p className="text-[10px] text-gray-600 mt-1 max-w-[280px] text-center leading-normal">Configure a vehicle to accurately calculate baseline fuel efficiencies.</p>
             </div>
           )}
@@ -167,18 +167,18 @@ export const Vehicles: React.FC = () => {
       {/* Add Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-[450px] glass-card rounded-2xl p-6 border border-white/5 relative flex flex-col">
-            <h2 className="text-lg font-bold text-white mb-1">Add Vehicle to Garage</h2>
-            <p className="text-xs text-gray-500 mb-6">Enter vehicle specifics to match efficiency profiles.</p>
+          <div className="w-full max-w-[450px] glass-card rounded-2xl p-6 border border-border relative flex flex-col">
+            <h2 className="text-lg font-bold text-foreground mb-1">Add Vehicle to Garage</h2>
+            <p className="text-xs text-muted-foreground mb-6">Enter vehicle specifics to match efficiency profiles.</p>
 
             <form onSubmit={handleAddVehicle} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Nickname</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Nickname</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. My daily driver"
-                  className="w-full bg-black/40 border border-white/5 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                  className="w-full bg-card border border-border rounded-xl py-2 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                   value={nickname}
                   onChange={(e) => setNickname(e.target.value)}
                 />
@@ -186,23 +186,23 @@ export const Vehicles: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Make</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Make</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Toyota"
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={make}
                     onChange={(e) => setMake(e.target.value)}
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Model</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Model</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Corolla"
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
                   />
@@ -211,19 +211,19 @@ export const Vehicles: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Year</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Year</label>
                   <input
                     type="number"
                     required
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={year}
                     onChange={(e) => setYear(e.target.value)}
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Fuel Type</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Fuel Type</label>
                   <select
-                    className="w-full bg-black/40 border border-white/5 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
+                    className="w-full bg-card border border-border rounded-xl py-2 px-3 text-sm text-foreground focus:outline-none focus:border-eco-glow/40 focus:ring-1 focus:ring-eco-glow/40"
                     value={fuelType}
                     onChange={(e) => setFuelType(e.target.value)}
                   >
@@ -236,11 +236,11 @@ export const Vehicles: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex gap-3 justify-end pt-4 border-t border-white/5">
+              <div className="flex gap-3 justify-end pt-4 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-white/5 hover:bg-white/5 rounded-xl text-xs font-bold uppercase text-gray-400 tracking-wider transition-colors"
+                  className="px-4 py-2 border border-border hover:bg-card rounded-xl text-xs font-bold uppercase text-muted-foreground tracking-wider transition-colors"
                 >
                   Cancel
                 </button>

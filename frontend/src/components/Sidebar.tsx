@@ -1,82 +1,77 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import { Leaf, LayoutDashboard, Car, Compass, Trophy, LogOut, Award, Activity, Bot } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { Leaf, LayoutDashboard, Car, Compass, Trophy, Award, Activity, Bot, Settings, Bell } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
-  const logout = useAuthStore((state) => state.logout);
-  const user = useAuthStore((state) => state.user);
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
-
   const navLinks = [
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/ai-assistant', label: 'AI Assistant', icon: Bot },
-    { to: '/live-telemetry', label: 'Live Drive', icon: Activity },
-    { to: '/trips', label: 'Past Trips', icon: Compass },
+    { to: '/trips', label: 'Trips', icon: Compass },
+    { to: '/analytics', label: 'Analytics', icon: Activity },
     { to: '/vehicles', label: 'Vehicles', icon: Car },
+    { to: '/badges', label: 'Rewards', icon: Award },
     { to: '/leaderboard', label: 'Leaderboard', icon: Trophy },
-    { to: '/badges', label: 'Achievements', icon: Award },
+    { to: '/ai-assistant', label: 'AI Assistant', icon: Bot },
+    { to: '/challenges', label: 'Challenges', icon: Award },
+    { to: '/notifications', label: 'Notifications', icon: Bell },
+    { to: '/settings', label: 'Settings', icon: Settings },
   ];
 
   return (
-    <div className="w-[260px] h-screen border-r border-white/5 bg-[#030504]/90 backdrop-blur-md flex flex-col justify-between py-6 px-4 shrink-0 select-none z-20">
-      <div className="space-y-8">
-        {/* Brand */}
-        <div className="flex items-center gap-3 px-2">
-          <div className="w-9 h-9 bg-eco-bg border border-eco-glow/20 rounded-xl flex items-center justify-center shadow-glow-green">
-            <Leaf className="w-5 h-5 text-eco-glow" />
-          </div>
-          <span className="text-lg font-extrabold tracking-tight text-white font-sans">
-            Eco<span className="text-eco-glow">Drive</span>
-          </span>
+    <div className="w-[260px] h-screen bg-card border-r border-border flex flex-col py-6 shrink-0 z-20 transition-colors duration-300">
+      
+      {/* Brand */}
+      <div className="flex items-center gap-3 px-8 mb-8">
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center text-eco-primary">
+          <Leaf className="w-6 h-6 fill-current" />
         </div>
-
-        {/* Navigation */}
-        <nav className="space-y-1">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? 'bg-eco-glow/10 text-eco-glow border border-eco-glow/20 shadow-glow-green'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
-                }`
-              }
-            >
-              <link.icon className="w-4 h-4" />
-              {link.label}
-            </NavLink>
-          ))}
-        </nav>
+        <span className="text-xl font-bold text-foreground tracking-tight">
+          EcoDrive
+        </span>
       </div>
 
-      {/* User Info / Logout */}
-      <div className="space-y-4 pt-4 border-t border-white/5">
-        <div className="flex items-center gap-3 px-2">
-          <div className="w-9 h-9 rounded-xl bg-eco-bg border border-white/10 flex items-center justify-center text-sm font-bold text-eco-glow">
-            {user?.name?.[0]?.toUpperCase() || 'U'}
-          </div>
-          <div className="flex flex-col truncate">
-            <span className="text-xs font-semibold text-white leading-none truncate">{user?.name}</span>
-            <span className="text-[10px] text-eco-glow mt-0.5 uppercase tracking-wider">{user?.eco_level || 'Beginner'}</span>
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto px-4 space-y-1">
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            className={({ isActive }) =>
+              `flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? 'bg-eco-light text-eco-primary font-bold shadow-sm'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              }`
+            }
+          >
+            <link.icon className="w-5 h-5 stroke-[2px]" />
+            {link.label}
+          </NavLink>
+        ))}
+      </nav>
+
+      {/* Promotional Card (Drive Green Save Earth) */}
+      <div className="px-6 mt-auto pb-4">
+        <div className="bg-eco-light rounded-2xl p-5 relative overflow-hidden">
+          {/* Abstract illustrations background could go here */}
+          <h3 className="text-eco-primary font-bold text-base mb-1 relative z-10">Drive Green<br/>Save Earth</h3>
+          <p className="text-[11px] text-eco-dark/70 mb-4 relative z-10 font-medium max-w-[140px]">
+            Your small effort can make a big difference.
+          </p>
+          <button className="bg-eco-primary text-white text-xs font-bold py-2 px-4 rounded-lg relative z-10 hover:bg-eco-dark transition-colors shadow-sm">
+            Explore More
+          </button>
+          
+          {/* Mockup Car Illustration SVG */}
+          <div className="absolute -bottom-2 -right-4 w-28 h-28 opacity-40 pointer-events-none">
+             <svg viewBox="0 0 100 100" className="w-full h-full fill-eco-primary">
+               <path d="M80 60 L20 60 C15 60 10 55 10 50 L10 40 C10 35 15 30 20 30 L60 30 L70 40 L80 40 C85 40 90 45 90 50 L90 60 Z" />
+               <circle cx="30" cy="65" r="10" className="fill-gray-800" />
+               <circle cx="70" cy="65" r="10" className="fill-gray-800" />
+             </svg>
           </div>
         </div>
-
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-500 hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 transition-all duration-200"
-        >
-          <LogOut className="w-4 h-4" />
-          Disconnect
-        </button>
       </div>
+      
     </div>
   );
 };
