@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
-import { Leaf, LayoutDashboard, Car, Compass, Trophy, LogOut, Award, Activity } from 'lucide-react';
+import { Leaf, LayoutDashboard, Car, Compass, Trophy, LogOut, Award, Activity, Bot } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const logout = useAuthStore((state) => state.logout);
@@ -15,6 +15,7 @@ export const Sidebar: React.FC = () => {
 
   const navLinks = [
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/ai-assistant', label: 'AI Assistant', icon: Bot },
     { to: '/live-telemetry', label: 'Live Drive', icon: Activity },
     { to: '/trips', label: 'Past Trips', icon: Compass },
     { to: '/vehicles', label: 'Vehicles', icon: Car },

@@ -9,6 +9,7 @@ import { Badges } from './pages/Badges';
 import { Leaderboard } from './pages/Leaderboard';
 import { Landing } from './pages/Landing';
 import { LiveTelemetry } from './pages/LiveTelemetry';
+import { AIAssistant } from './pages/AIAssistant';
 import { Sidebar } from './components/Sidebar';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
           </ProtectedRoute>
         }>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/ai-assistant" element={<AIAssistant />} />
           <Route path="/live-telemetry" element={<LiveTelemetry />} />
           <Route path="/trips" element={<Trips />} />
           <Route path="/vehicles" element={<Vehicles />} />
