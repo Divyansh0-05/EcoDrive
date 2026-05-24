@@ -77,6 +77,14 @@ class AIAssistantController extends Controller
     {
         $messageLower = strtolower($message);
         
+        if (str_contains($messageLower, 'what is the app doing') || str_contains($messageLower, 'what does the app do') || str_contains($messageLower, 'about the app')) {
+            return "EcoDrive is a platform designed to help you drive more sustainably! It tracks your vehicle data, logs your trips, and calculates your carbon emissions. By analyzing your driving habits—like hard braking or rapid acceleration—it provides personalized recommendations to help you reduce fuel consumption, save money, and lower your environmental impact.";
+        }
+
+        if (str_contains($messageLower, 'reduce emission') || str_contains($messageLower, 'lower emission')) {
+            return "To reduce your carbon emissions, try these highly effective tips:\n\n* **Maintain a steady speed:** Use cruise control on the highway when safe.\n* **Anticipate traffic:** Avoid unnecessary hard braking and rapid acceleration.\n* **Limit idling:** Turn off your engine if you are parked for more than a minute.\n* **Check tire pressure:** Under-inflated tires increase drag and lower fuel efficiency.\n* **Remove excess weight:** Don't carry unnecessary heavy items in your trunk.";
+        }
+        
         if (str_contains($messageLower, 'braking') || str_contains($messageLower, 'brake')) {
             return "I noticed you've had **" . ($context['totalBrakes'] ?? 0) . " hard braking events** recently.\n\n* **Tip:** Try scanning the road 12-15 seconds ahead. If you see a red light, take your foot off the gas early and coast. This converts kinetic energy efficiently rather than wasting it as friction heat on your brake pads!";
         }
