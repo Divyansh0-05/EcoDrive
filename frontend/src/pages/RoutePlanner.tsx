@@ -16,29 +16,82 @@ export const RoutePlanner: React.FC = () => {
     
     // Simulate API delay
     setTimeout(() => {
-      setRouteData({
-        center: [19.0760, 72.8777], // Mumbai
-        ecoRoute: [
-          [19.0760, 72.8777], // Mumbai
-          [19.0330, 73.0188], // Navi Mumbai
-          [18.7500, 73.3500], // Lonavala
-          [18.5204, 73.8567], // Pune
-        ],
-        trafficRoute: [
-          [19.0760, 72.8777],
-          [19.0500, 73.0000],
-          [18.8000, 73.3000],
-          [18.5204, 73.8567],
-        ],
-        analytics: {
-          distance: '5.2 km',
-          time: '18 mins',
-          fuelSaved: '1.2L',
-          co2Saved: '2.4kg',
-          ecoScore: 94,
-          treesSaved: 1
-        }
-      });
+      const s = start.toLowerCase();
+      const d = destination.toLowerCase();
+
+      if (s.includes('delhi') && d.includes('punjab')) {
+        setRouteData({
+          center: [29.75, 76.5], // Center point between Delhi and Punjab
+          ecoRoute: [
+            [28.6139, 77.2090], // New Delhi
+            [29.3909, 76.9635], // Panipat
+            [30.3397, 76.3868], // Patiala
+            [30.9009, 75.8572], // Ludhiana
+          ],
+          trafficRoute: [
+            [28.6139, 77.2090],
+            [29.0587, 77.0227],
+            [30.1337, 76.3246],
+            [30.9009, 75.8572],
+          ],
+          analytics: {
+            distance: '315 km',
+            time: '5h 30m',
+            fuelSaved: '4.5L',
+            co2Saved: '10.5kg',
+            ecoScore: 88,
+            treesSaved: 3
+          }
+        });
+      } else if (s.includes('jalandhar') && d.includes('phagwara')) {
+        setRouteData({
+          center: [31.275, 75.67], // Center between Jalandhar and Phagwara
+          ecoRoute: [
+            [31.3260, 75.5761], // Jalandhar
+            [31.2800, 75.6500],
+            [31.2500, 75.7000],
+            [31.2240, 75.7708], // Phagwara
+          ],
+          trafficRoute: [
+            [31.3260, 75.5761],
+            [31.2900, 75.6600],
+            [31.2600, 75.7200],
+            [31.2240, 75.7708],
+          ],
+          analytics: {
+            distance: '21.5 km',
+            time: '35 mins',
+            fuelSaved: '0.8L',
+            co2Saved: '1.9kg',
+            ecoScore: 92,
+            treesSaved: 1
+          }
+        });
+      } else {
+        setRouteData({
+          center: [19.0760, 72.8777], // Mumbai
+          ecoRoute: [
+            [19.0760, 72.8777], // Mumbai
+            [19.0330, 73.0188], // Navi Mumbai
+            [18.7500, 73.3500], // Lonavala
+            [18.5204, 73.8567], // Pune
+          ],
+          trafficRoute: [
+            [19.0760, 72.8777],
+            [19.0500, 73.0000],
+            [18.8000, 73.3000],
+            [18.5204, 73.8567],
+          ],
+          analytics: {
+            distance: '150.2 km',
+            time: '2h 45m',
+            fuelSaved: '1.2L',
+            co2Saved: '2.4kg',
+            ecoScore: 94,
+            treesSaved: 1
+          }
+        });
+      }
       setIsCalculating(false);
     }, 1500);
   };

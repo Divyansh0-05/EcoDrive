@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Car, Plus, Trash2, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { Car, Plus, Trash2, CheckCircle2, ShieldAlert, Bot } from 'lucide-react';
 
 interface Vehicle {
   id: number;
@@ -233,6 +233,20 @@ export const Vehicles: React.FC = () => {
                     <option value="hybrid">Hybrid</option>
                     <option value="lpg">LPG</option>
                   </select>
+                </div>
+              </div>
+
+              <div className="mt-2 p-3 rounded-xl bg-eco-glow/10 border border-eco-glow/20 flex gap-3">
+                <Bot className="w-5 h-5 text-eco-glow shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-eco-glow mb-1">Emission Insight</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {fuelType === 'petrol' && "Petrol vehicles emit approx. 2.3 kg of CO2 per liter. Consider a hybrid or EV in the future for lower emissions."}
+                    {fuelType === 'diesel' && "Diesel emits about 2.7 kg of CO2 per liter. Careful route planning can help reduce your impact."}
+                    {fuelType === 'electric' && "Zero tailpipe emissions! You're actively reducing your carbon footprint. Great choice!"}
+                    {fuelType === 'hybrid' && "Excellent! Hybrids use significantly less fuel, optimizing your emissions output."}
+                    {fuelType === 'lpg' && "LPG is slightly cleaner than petrol. Regular maintenance keeps emissions low."}
+                  </p>
                 </div>
               </div>
 
