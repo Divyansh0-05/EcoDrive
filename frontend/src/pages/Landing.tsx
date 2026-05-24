@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play, Leaf, Zap, BarChart3, Activity, ShieldCheck, Globe, Route } from 'lucide-react';
+import { FloatingNav } from '../components/ui/floating-navbar';
+import { TextGenerateEffect } from '../components/ui/text-generate-effect';
 
 export const Landing: React.FC = () => {
+  const navItems = [
+    { name: 'Home', link: '#' },
+    { name: 'Features', link: '#features' },
+    { name: 'Analytics', link: '#analytics' },
+    { name: 'Mission', link: '#mission' },
+  ];
+
   return (
     <div className="min-h-screen bg-[#FAFCFF] font-sans overflow-x-hidden flex flex-col relative selection:bg-eco-primary/30">
       
@@ -10,6 +19,8 @@ export const Landing: React.FC = () => {
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-eco-glow/20 rounded-full blur-[120px] -z-10 mix-blend-multiply" />
       <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-blue-400/10 rounded-full blur-[120px] -z-10 mix-blend-multiply" />
       
+      <FloatingNav navItems={navItems} />
+
       {/* Navigation */}
       <nav className="w-full max-w-[1400px] mx-auto px-6 py-6 flex items-center justify-between z-10 relative">
         <div className="flex items-center gap-2">
@@ -55,11 +66,9 @@ export const Landing: React.FC = () => {
           <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">The Future of Sustainable Driving</span>
         </div>
 
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-foreground leading-[0.9] mb-8 max-w-[900px] animate-fade-in" style={{ animationDelay: '100ms' }}>
+        <h1 className="scroll-m-20 text-6xl md:text-8xl font-extrabold tracking-tight text-foreground leading-[0.9] mb-4 max-w-[900px] animate-fade-in" style={{ animationDelay: '100ms' }}>
           Drive Smarter. <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-eco-primary to-emerald-400">
-            Breathe Cleaner.
-          </span>
+          <TextGenerateEffect words="Breathe Cleaner." className="text-6xl md:text-8xl font-extrabold tracking-tight" />
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-[600px] leading-relaxed font-medium mb-12 animate-fade-in" style={{ animationDelay: '200ms' }}>
