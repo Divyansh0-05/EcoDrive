@@ -1,8 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Leaf, LayoutDashboard, Car, Compass, Trophy, Award, Activity, Bot, Settings, Bell, MapPin } from 'lucide-react';
+import { Leaf, LayoutDashboard, Car, Compass, Trophy, Award, Activity, Bot, Settings, Bell, MapPin, LogOut } from 'lucide-react';
+import { useAuthStore } from '../store/authStore';
 
 export const Sidebar: React.FC = () => {
+  const logout = useAuthStore((state) => state.logout);
+
   const navLinks = [
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/trips', label: 'Trips', icon: Compass },
@@ -73,6 +76,17 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
       
+      {/* Logout Button */}
+      <div className="px-6 pb-6 pt-2">
+        <button 
+          onClick={() => logout()}
+          className="flex w-full items-center gap-4 px-4 py-3 rounded-xl text-sm font-bold text-red-500/80 hover:text-red-500 hover:bg-red-500/10 transition-all duration-200"
+        >
+          <LogOut className="w-5 h-5 stroke-[2px]" />
+          Sign Out
+        </button>
+      </div>
+
     </div>
   );
 };
